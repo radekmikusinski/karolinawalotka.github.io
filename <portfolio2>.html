@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Modelki - [Twoje Imię i Nazwisko]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif; 
+            background-color: #f8f9fa; 
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lato', sans-serif; 
+        }
+        .hero-bg {
+            background-image: url('images/hero.svg'); 
+            background-size: cover;
+            /* background-position jest teraz kontrolowany przez klasy Tailwind */
+        }
+
+        :root {
+            --accent-color: #cccac6; 
+            --accent-color-dark: #adaba9; 
+            --text-on-accent: #374151; /* Tailwind gray-700 */
+        }
+
+        .nav-active {
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent-color); 
+        }
+        .nav-item:hover {
+            color: var(--accent-color-dark); 
+        }
+        .portfolio-image:hover {
+            transform: scale(1.05); 
+            filter: brightness(0.9); 
+        }
+        .btn-primary {
+            background-color: var(--accent-color); 
+            color: var(--text-on-accent); 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-color-dark); 
+            color: var(--text-on-accent); 
+        }
+        .section-title {
+            border-bottom: 2px solid #ddd; 
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500; 
+        }
+        
+        .filter-btn {
+            color: #4b5563; 
+            border-color: #d1d5db; 
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        .filter-btn:hover { 
+            background-color: #e5e7eb; 
+            color: var(--text-on-accent); 
+            border-color: #9ca3af; 
+        }
+        .filter-btn.active-filter { 
+            background-color: var(--accent-color);
+            color: var(--text-on-accent);
+            border-color: var(--accent-color);
+        }
+        .filter-btn.active-filter:hover { 
+            background-color: var(--accent-color-dark);
+            color: var(--text-on-accent); 
+            border-color: var(--accent-color-dark);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color-dark);
+        }
+
+        .text-accent-color {
+            color: var(--accent-color);
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .hero-text-desktop {
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
+            <div class="flex justify-between items-center">
+                <div>
+                    <a class="text-xl font-bold text-gray-800 hover:text-[var(--accent-color-dark)] md:text-2xl" href="#home">[Twoje Imię]</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="toggle menu">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                            <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:flex items-center hidden">
+                <div class="flex flex-col md:flex-row md:mx-6">
+                    <a class="my-1 text-sm text-gray-700 font-medium nav-item nav-active md:mx-4 md:my-0" href="#home">Start</a>
+                    <a class="my-1 text-sm text-gray-700 font-medium nav-item md:mx-4 md:my-0" href="#portfolio">Portfolio</a>
+                    <a class="my-1 text-sm text-gray-700 font-medium nav-item md:mx-4 md:my-0" href="#about">O Mnie</a>
+                    <a class="my-1 text-sm text-gray-700 font-medium nav-item md:mx-4 md:my-0" href="#contact">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="bg-white md:bg-transparent md:relative md:h-[calc(100vh-60px)]">
+        <div class="h-64 sm:h-80 overflow-hidden md:absolute md:inset-0 md:h-full md:overflow-visible">
+            <div class="hero-bg h-full w-[200%] bg-left-center md:w-full md:bg-center">
+                </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-8 md:py-0 md:relative md:h-full md:flex md:items-center">
+            <div class="hidden md:block md:w-1/2 flex-shrink-0"></div> 
+            <div class="text-left w-full md:w-1/2 md:pl-4 z-10"> 
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4 leading-tight text-gray-800 
+                           md:text-[var(--text-on-accent)] md:text-6xl hero-text-desktop">
+                    Naturalna Elegancja, Pozytywna Energia
+                </h1>
+                <p class="text-lg sm:text-xl mb-8 max-w-xl text-gray-700 
+                          md:text-[var(--text-on-accent)] md:text-2xl hero-text-desktop">
+                    Profesjonalna modelka komercyjna i wideo, gotowa wnieść świeżość do Twojego projektu.
+                </p>
+                <a href="#portfolio" class="btn-primary font-semibold py-3 px-8 rounded-lg text-lg hover:shadow-xl transition duration-300">
+                    Zobacz Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="portfolio" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 section-title">Moje Portfolio</h2>
+            
+            <div class="flex justify-center mb-10 space-x-2 md:space-x-4">
+                <button class="filter-btn active-filter px-4 py-2 text-sm md:text-base font-medium border-2 rounded-lg transition" data-filter="all">Wszystko</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-medium border-2 rounded-lg transition" data-filter="commercial">Komercyjne</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-medium border-2 rounded-lg transition" data-filter="video">Wideo</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-medium border-2 rounded-lg transition" data-filter="lifestyle">Lifestyle</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 portfolio-gallery">
+                <div class="portfolio-item commercial" data-category="commercial">
+                    <img src="images/zdjecie1.jpg" alt="Projekt Komercyjny 1" class="w-full transition-transform duration-300 portfolio-image">
+                </div>
+                <div class="portfolio-item video" data-category="video">
+                    <img src="images/zdjecie2.JPG" alt="Klatka z Wideo 1" class="w-full transition-transform duration-300 portfolio-image">
+                </div>
+                <div class="portfolio-item lifestyle" data-category="lifestyle">
+                    <img src="images/zdjecie3.JPG" alt="Zdjęcie Lifestyle 1" class="w-full transition-transform duration-300 portfolio-image">
+                </div>
+                <div class="portfolio-item commercial" data-category="commercial">
+                    <img src="images/zdjecie4.JPG" alt="Projekt Komercyjny 2" class="w-full transition-transform duration-300 portfolio-image">
+                </div>
+                <div class="portfolio-item video" data-category="video">
+                    <img src="images/zdjecie5.JPG" alt="Klatka z Wideo 2" class="w-full transition-transform duration-300 portfolio-image">
+                </div>
+                 <div class="portfolio-item lifestyle" data-category="lifestyle">
+                    <img src="https://placehold.co/600x400/fef3c7/f59e0b?text=Zdjęcie+Lifestyle+2" alt="Zdjęcie Lifestyle 2" class="w-full transition-transform duration-300 portfolio-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 section-title">Kilka Słów o Mnie</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <img src="images/zdjecie1.jpg" alt="Moje profesjonalne zdjęcie profilowe" class="rounded-lg shadow-xl mx-auto">
+                </div>
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Cześć, jestem [Twoje Imię]!</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Jestem modelką specjalizującą się w sesjach komercyjnych oraz reklamach wideo. Moim celem jest wnoszenie naturalnej elegancji i pozytywnej energii do każdego projektu. Cechuje mnie profesjonalizm, zaangażowanie i umiejętność adaptacji do różnorodnych koncepcji kreatywnych.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Lubię prosty design i jasne kolory, co staram się odzwierciedlać w swoim wizerunku i pracy. Wierzę, że autentyczność i świeżość są kluczem do skutecznego przekazu wizualnego.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Zapraszam do zapoznania się z moim portfolio i do kontaktu w sprawie potencjalnej współpracy!
+                    </p>
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-gray-700 mb-2">Moje wymiary:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Wzrost: [Twój wzrost] cm</li>
+                            <li>Biust: [Twój wymiar] cm</li>
+                            <li>Talia: [Twój wymiar] cm</li>
+                            <li>Biodra: [Twój wymiar] cm</li>
+                            <li>Rozmiar buta: [Twój rozmiar]</li>
+                            <li>Kolor włosów: [Twój kolor]</li>
+                            <li>Kolor oczu: [Twój kolor]</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn-primary font-semibold py-3 px-8 rounded-lg text-lg hover:shadow-xl transition duration-300">Skontaktuj się ze mną</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 section-title">Nawiążmy Współpracę</h2>
+            <div class="max-w-2xl mx-auto bg-gray-50 p-8 md:p-10 rounded-xl shadow-2xl">
+                <p class="text-gray-600 text-center mb-8">
+                    Masz pytania lub chcesz omówić projekt? Wypełnij formularz poniżej lub skontaktuj się bezpośrednio.
+                </p>
+                <form action="#" method="POST">
+                    <div class="mb-6">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Imię i Nazwisko</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[var(--accent-color)] focus:border-[var(--accent-color)] transition" placeholder="Jan Kowalski" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Adres E-mail</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[var(--accent-color)] focus:border-[var(--accent-color)] transition" placeholder="jan.kowalski@example.com" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-700">Wiadomość</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[var(--accent-color)] focus:border-[var(--accent-color)] transition" placeholder="Twoja wiadomość..." required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary font-semibold py-3 px-10 rounded-lg text-lg hover:shadow-xl transition duration-300 w-full md:w-auto">Wyślij Wiadomość</button>
+                    </div>
+                </form>
+                <div class="text-center mt-10">
+                    <p class="text-gray-600">Lub skontaktuj się bezpośrednio:</p>
+                    <a href="mailto:twoj.email@example.com" class="text-[var(--accent-color-dark)] hover:text-[var(--accent-color)] font-medium text-lg">twoj.email@example.com</a>
+                    <div class="flex justify-center space-x-6 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-[var(--accent-color-dark)] transition">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427.465C8.901 2.013 9.255 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.86.399-1.249.787-.389.389-.605.782-.787 1.25-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.86.787 1.249.389.389.782.605 1.25.787.353.137.882.3 1.857.344 1.023.047 1.351.058 3.807.058h.468c2.456 0 2.784-.011 3.807-.058.975-.045 1.504-.207 1.857-.344.467-.182-.86-.399 1.249-.787.389-.389.605-.782-.787 1.25.137-.353.3-.882.344-1.857.047-1.023.058-1.351-.058-3.807v-.468c0-2.456-.011-2.784-.058-3.807-.045-.975-.207-1.504-.344-1.857a3.097 3.097 0 00-.787-1.249 3.097 3.097 0 00-1.249-.787c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-[var(--accent-color-dark)] transition">
+                           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                         <a href="#" class="text-gray-500 hover:text-[var(--accent-color-dark)] transition">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="currentYear"></span> [Twoje Imię i Nazwisko]. Wszelkie prawa zastrzeżone.</p>
+            <p class="text-sm mt-2">Stworzone z <span class="text-accent-color">&hearts;</span> i Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Obsługa przełączania menu mobilnego
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Płynne przewijanie dla linków nawigacyjnych
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    e.preventDefault();
+                    return;
+                }
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault(); 
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (this.classList.contains('nav-item')) {
+                        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('nav-active'));
+                        this.classList.add('nav-active');
+                    }
+                }
+            });
+        });
+
+        // Dynamiczne wstawianie roku w stopce
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+        
+        // Filtrowanie portfolio
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        if (filterButtons.length > 0 && portfolioItems.length > 0) {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+                    button.classList.add('active-filter');
+
+                    const filterValue = button.getAttribute('data-filter');
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Zmniejszanie nawigacji przy przewijaniu
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.onscroll = function() {
+                if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                    navbar.classList.add("py-2"); 
+                    navbar.classList.remove("py-3");
+                } else {
+                    navbar.classList.add("py-3"); 
+                    navbar.classList.remove("py-2");
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>
